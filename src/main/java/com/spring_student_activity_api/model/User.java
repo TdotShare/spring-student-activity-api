@@ -101,6 +101,10 @@ public class User {
     @Column(name = "userLastLoginAt")
     private Date userLastLoginAt;
 
+    @ManyToOne
+    @JoinColumn(name = "userTypeId" , referencedColumnName = "roleId" , insertable = false, updatable = false )
+    private Role role;
+
     public User() {
 
     }

@@ -4,6 +4,7 @@ import java.util.Optional;
 import com.spring_student_activity_api.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import com.spring_student_activity_api.dto.UserRoleView;
 import com.spring_student_activity_api.exception.ResourceNotFoundException;
 import com.spring_student_activity_api.model.User;
 
@@ -19,6 +20,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<User> findByUserUsername(String username) {
         return Optional.ofNullable(userRepository.findByUserUsername(username).orElseThrow(() -> new ResourceNotFoundException("ไม่พบข้อมูล : " + username)));
+    }
+
+    @Override
+    public Optional<UserRoleView> findProjectedByUserUsername(String username) {
+        return Optional.ofNullable(userRepository.findProjectedByUserUsername(username).orElseThrow(() -> new ResourceNotFoundException("ไม่พบข้อมูล : " + username)));
     }
     
 }

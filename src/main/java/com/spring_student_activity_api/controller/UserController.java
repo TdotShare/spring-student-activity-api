@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.spring_student_activity_api.dto.UserRoleView;
 import com.spring_student_activity_api.model.User;
 import com.spring_student_activity_api.service.UserService;
 
@@ -21,8 +22,13 @@ public class UserController {
     }
 
     @GetMapping("/findByUserUsername")
-    public Optional<User> findByUserUsername(@RequestParam(value = "username" , defaultValue = "") String username){
+    public Optional<User> findByUserUsername(@RequestParam(value = "username", defaultValue = "") String username) {
         return this.userService.findByUserUsername(username);
+    }
+
+    @GetMapping("findProjectedByUserUsername")
+    public Optional<UserRoleView>  findProjectedByUserUsername(@RequestParam(value = "username", defaultValue = "") String username) {
+        return this.userService.findProjectedByUserUsername(username);
     }
 
 }
