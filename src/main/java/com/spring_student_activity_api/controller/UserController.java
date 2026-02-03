@@ -26,8 +26,8 @@ public class UserController {
         return this.userService.findByUserUsername(username);
     }
 
-    @GetMapping("findProjectedByUserUsername")
-    public Optional<UserRoleView>  findProjectedByUserUsername(@RequestParam(value = "username", defaultValue = "") String username) {
+    @GetMapping("/findProjectedByUserUsername")
+    public Optional<UserRoleView> findProjectedByUserUsername(@RequestParam(value = "username", defaultValue = "") String username) {
         return this.userService.findProjectedByUserUsername(username);
     }
 
