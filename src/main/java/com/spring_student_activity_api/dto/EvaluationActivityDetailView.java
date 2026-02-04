@@ -15,5 +15,12 @@ public interface EvaluationActivityDetailView {
         Integer getActivityId();
         String getActivityCode();
         String getActivityName();
+
+        InfoCategory getCategory();
+
+        interface  InfoCategory {
+            Integer getCategoryId();
+            String getCategoryNameTh();
+        }
     }
 }

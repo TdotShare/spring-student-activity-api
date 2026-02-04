@@ -97,6 +97,10 @@ public class Activity {
     @Column(name = "activityUpdateAt")
     private Date activityUpdateAt;
 
+    @ManyToOne
+    @JoinColumn(name = "activityCategoryId" , referencedColumnName = "categoryId" , insertable = false , updatable = false)
+    private Category category;
+
     public Activity() {
     }
 
@@ -330,5 +334,13 @@ public class Activity {
 
     public void setActivityUpdateAt(Date activityUpdateAt) {
         this.activityUpdateAt = activityUpdateAt;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }
