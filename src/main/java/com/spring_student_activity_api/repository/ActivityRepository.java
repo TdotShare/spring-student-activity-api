@@ -1,7 +1,10 @@
 package com.spring_student_activity_api.repository;
 
+import com.spring_student_activity_api.dto.ActivityInfoPagination;
 import com.spring_student_activity_api.dto.ActivityStudentParticipationView;
 import com.spring_student_activity_api.model.Activity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -17,5 +20,6 @@ public interface ActivityRepository extends JpaRepository<Activity , Integer> {
             "GROUP BY a.activityId, a.activityCode", nativeQuery = true)
     Optional<ActivityStudentParticipationView> findProjectedActivityStudentParticipation(@Param("actCode") String actCode);
 
-    
+    @Query("SELECT a FROM Activity a WHERE (:name IS NULL OR a.activityName LIKE %:name%)")
+    Page<ActivityInfoPagination> findAllActivities(@Param("name") String activityName, Pageable pageable);
 }

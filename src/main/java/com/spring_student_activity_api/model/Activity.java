@@ -1,5 +1,6 @@
 package com.spring_student_activity_api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -97,8 +98,9 @@ public class Activity {
     @Column(name = "activityUpdateAt")
     private Date activityUpdateAt;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "activityCategoryId" , referencedColumnName = "categoryId" , insertable = false , updatable = false)
+    @JsonIgnore
     private Category category;
 
     public Activity() {

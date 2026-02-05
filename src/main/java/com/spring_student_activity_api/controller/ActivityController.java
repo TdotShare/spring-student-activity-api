@@ -1,12 +1,11 @@
 package com.spring_student_activity_api.controller;
 
+import com.spring_student_activity_api.dto.ActivityInfoPagination;
 import com.spring_student_activity_api.dto.ActivityStudentParticipationView;
 import com.spring_student_activity_api.model.Activity;
 import com.spring_student_activity_api.service.ActivityService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -14,8 +13,7 @@ import java.util.Optional;
 @RequestMapping("activity")
 public class ActivityController {
 
-    private ActivityService activityService;
-
+    private final ActivityService activityService;
 
     public ActivityController(ActivityService activityService) {
         this.activityService = activityService;
@@ -31,5 +29,13 @@ public class ActivityController {
     public Optional<ActivityStudentParticipationView> findProjectedActivityStudentParticipation(@PathVariable(name = "actCode" , required = true) String actCode)
     {
         return this.activityService.findProjectedActivityStudentParticipation(actCode);
+    }
+
+    @GetMapping("getAllActivity")
+    public Page<ActivityInfoPagination> getAllActivity(
+            @RequestParam(name = "keyword", required = false) String keyword, // เพิ่มส่วนนี้
+            @RequestParam(name = "page", defaultValue = "1") int page) {
+
+        return this.activityService.getActivities(keyword, page);
     }
 }

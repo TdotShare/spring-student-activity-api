@@ -3,6 +3,8 @@ package com.spring_student_activity_api.model;
 
 import java.sql.Date;
 
+
+
 import jakarta.persistence.*;
 
 @Entity
