@@ -6,11 +6,14 @@ import com.spring_student_activity_api.model.Activity;
 import com.spring_student_activity_api.service.ActivityService;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 import java.util.Optional;
 
 @RestController
 @RequestMapping("activity")
+@Tag(name = "Activity Management", description = "ระบบจัดการกิจกรรมและการแบ่งรอบ")
 public class ActivityController {
 
     private final ActivityService activityService;
@@ -19,6 +22,7 @@ public class ActivityController {
         this.activityService = activityService;
     }
 
+    @Operation(summary = "ดึงข้อมูลกิจกรรม", description = "ดึงข้อมูลกิจกรรม (ById)")
     @GetMapping("findById/{actId}")
     public Activity findById(@PathVariable(name = "actId" , required = true) Integer actId)
     {
